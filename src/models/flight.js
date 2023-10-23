@@ -82,5 +82,10 @@ const FlightSchema = new mongoose.Schema({
 
 }, { collection: 'flights', timestamps: true })
 
+//Mongoose Schema MW     ---> init: verilerle gerekli işlemler yapıldı ekrana basmadan hemen önceki data yı alığ arada işlem yapcam gibi düşünülebilir.
+FlightSchema.pre('init', function(data){
+    data.almis = "bebis"  //---> burada eklediğim bilgi ered tablosunda yer alan bir satırmışcasına datama ekleniyor
+})
+
 /* ------------------------------------------------------- */
 module.exports = mongoose.model('Flight', FlightSchema)
