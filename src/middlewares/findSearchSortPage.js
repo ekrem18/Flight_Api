@@ -1,7 +1,5 @@
 "use strict"
-/* -------------------------------------------------------
-    NODEJS EXPRESS | CLARUSWAY FullStack Team
-------------------------------------------------------- */
+/* -------------------------------------------------------*/
 // app.use(findSearchSortPage):
 
 module.exports = (req, res, next) => {  
@@ -25,6 +23,8 @@ module.exports = (req, res, next) => {
     let skip = Number(req.query?.skip)
     skip = skip > 0 ? skip : (page * limit)
 
+    
+    
     // Run SearchingSortingPagination engine for Model:
     res.getModelList = async function (Model, filters = {}, populate = null) {
 
@@ -33,6 +33,8 @@ module.exports = (req, res, next) => {
         return await Model.find(filtersAndSearch).sort(sort).skip(skip).limit(limit).populate(populate)
     }
 
+    
+    
     // Details:
     res.getModelListDetails = async function (Model, filters = {}) {
 

@@ -1,7 +1,5 @@
 "use strict"
-/* -------------------------------------------------------
-    NODEJS EXPRESS | CLARUSWAY FullStack Team
-------------------------------------------------------- */
+/* -------------------------------------------------------*/
 // User Controller:
 
 const User = require('../models/user')
@@ -31,6 +29,7 @@ module.exports = {
         })
     },
 
+
     create: async (req, res) => {
         /*
             #swagger.tags = ["Users"]
@@ -57,6 +56,7 @@ module.exports = {
         })
     },
 
+
     read: async (req, res) => {
         /*
             #swagger.tags = ["Users"]
@@ -71,6 +71,7 @@ module.exports = {
         })
 
     },
+
 
     update: async (req, res) => {
         /*
@@ -100,6 +101,7 @@ module.exports = {
 
     },
 
+    
     delete: async (req, res) => {
         /*
             #swagger.tags = ["Users"]
