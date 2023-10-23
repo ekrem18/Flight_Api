@@ -30,7 +30,7 @@ module.exports = {
     });
   },
 
-  
+
   create: async (req, res) => {
     /*
             #swagger.tags = ["Reservations"]
@@ -116,6 +116,40 @@ module.exports = {
                 }
             }
         */
+    /* Check ID or OBJECT for passengers */
+    let passengersInfos = req.body?.passengers || [],
+      passengerIds = [],
+      passenger = {};
+
+    for (let passengerInfo of passengersInfos) {
+      if (typeof passengerInfo == "object") {
+        // passengerInfo = Object:
+
+        // Yolcu mevcut mu?
+        passenger = await Passenger.findOne({ email: passengerInfo.email });
+
+        if (passenger) {
+          // Mevcut ise ID'sini kabul et:
+          passengerIds.push(passenger._id);
+        } else {
+          // Gelen veriye createdId Ekle:
+          // passengerInfo = { ...passengerInfo, createdId: req.body.createdId }
+          Object.assign(passengerInfo, { createdId: req.body.createdId });
+
+          // Mevcut değilse yeni yolcu oluştur:
+          passenger = await Passenger.create(passengerInfo);
+          // ve ID'sini kabul et:
+          passengerIds.push(passenger._id);
+        }
+      } else {
+        // passengerInfo = ID:
+
+        // Yolcu mevcut mu?
+        passenger = await Passenger.findOne({ _id: passengerInfo });
+        // Mevcut ise ID'sini kabul et:
+        if (passenger) passengerIds.push(passenger._id);
+      }
+    }   
 
     const data = await Reservation.updateOne({ _id: req.params.id }, req.body);
 
@@ -140,4 +174,20 @@ module.exports = {
       data,
     });
   },
+  passengers: async (req, res) => {
+    /*
+        #swagger.tags = ["Reservations"]
+        #swagger.summary = "List Passengers of Reservation"
+    */
+
+    const data = await Reservation.findOne({ _id: req.params.id })
+
+    const passengers = await Passenger.find({ _id: { $in: data.passengers } })  //---> $in mongodb komutu bu, array içinde arama komuutu veriyoruz
+
+    res.status(200).send({
+        error: false,
+        passengers
+    })
+
+},
 };
