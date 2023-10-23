@@ -1,15 +1,14 @@
-"use strict"
+"use strict";
 /* -------------------------------------------------------
     NODEJS EXPRESS | CLARUSWAY FullStack Team
 ------------------------------------------------------- */
 // Reservation Controller:
-
-const Reservation = require('../models/reservation')
+const Passenger = require("../models/passenger");
+const Reservation = require("../models/reservation");
 
 module.exports = {
-
-    list: async (req, res) => {
-        /*
+  list: async (req, res) => {
+    /*
             #swagger.tags = ["Reservations"]
             #swagger.summary = "List Reservations"
             #swagger.description = `
@@ -22,17 +21,18 @@ module.exports = {
             `
         */
 
-        const data = await res.getModelList(Reservation)
+    const data = await res.getModelList(Reservation);
 
-        res.status(200).send({
-            error: false,
-            details: await res.getModelListDetails(Reservation),
-            data
-        })
-    },
+    res.status(200).send({
+      error: false,
+      details: await res.getModelListDetails(Reservation),
+      data,
+    });
+  },
 
-    create: async (req, res) => {
-        /*
+  
+  create: async (req, res) => {
+    /*
             #swagger.tags = ["Reservations"]
             #swagger.summary = "Create Reservation"
             #swagger.parameters['body'] = {
@@ -43,35 +43,70 @@ module.exports = {
             }
         */
 
-        // req.body.createdId = req.user._id
+    // req.body.createdId = req.user._id
 
-        
 
-        const data = await Reservation.create(req.body)
+    /* Check ID or OBJECT for passengers */
+    let passengersInfos = req.body?.passengers || [],
+      passengerIds = [],
+      passenger = {};
 
-        res.status(201).send({
-            error: false,
-            data
-        })
-    },
+    for (let passengerInfo of passengersInfos) {
+      if (typeof passengerInfo == "object") {
+        // passengerInfo = Object:
 
-    read: async (req, res) => {
-        /*
+        // Yolcu mevcut mu?
+        passenger = await Passenger.findOne({ email: passengerInfo.email });
+
+        if (passenger) {
+          // Mevcut ise ID'sini kabul et:
+          passengerIds.push(passenger._id);
+        } else {
+          // Gelen veriye createdId Ekle:
+          // passengerInfo = { ...passengerInfo, createdId: req.body.createdId }
+          Object.assign(passengerInfo, { createdId: req.body.createdId });
+
+          // Mevcut değilse yeni yolcu oluştur:
+          passenger = await Passenger.create(passengerInfo);
+          // ve ID'sini kabul et:
+          passengerIds.push(passenger._id);
+        }
+      } else {
+        // passengerInfo = ID:
+
+        // Yolcu mevcut mu?
+        passenger = await Passenger.findOne({ _id: passengerInfo });
+        // Mevcut ise ID'sini kabul et:
+        if (passenger) passengerIds.push(passenger._id);
+      }
+    }
+
+
+    const data = await Reservation.create(req.body);
+    res.status(201).send({
+      error: false,
+      data,
+    });
+  },
+
+
+  read: async (req, res) => {
+    /*
             #swagger.tags = ["Reservations"]
             #swagger.summary = "Get Single Reservation"
         */
 
-        const data = await Reservation.findOne({ _id: req.params.id })
+    const data = await Reservation.findOne({ _id: req.params.id });
 
-        res.status(200).send({
-            error: false,
-            data
-        })
+    res.status(200).send({
+      error: false,
+      data,
+    });
+  },
 
-    },
 
-    update: async (req, res) => {
-        /*
+  update: async (req, res) => {
+    /*
             #swagger.tags = ["Reservations"]
             #swagger.summary = "Update Reservation"
             #swagger.parameters['body'] = {
@@ -82,28 +117,27 @@ module.exports = {
             }
         */
 
-        const data = await Reservation.updateOne({ _id: req.params.id }, req.body)
+    const data = await Reservation.updateOne({ _id: req.params.id }, req.body);
 
-        res.status(202).send({
-            error: false,
-            data,
-            new: await Reservation.findOne({ _id: req.params.id })
-        })
+    res.status(202).send({
+      error: false,
+      data,
+      new: await Reservation.findOne({ _id: req.params.id }),
+    });
+  },
 
-    },
 
-    delete: async (req, res) => {
-        /*
+  delete: async (req, res) => {
+    /*
             #swagger.tags = ["Reservations"]
             #swagger.summary = "Delete Reservation"
         */
 
-        const data = await Reservation.deleteOne({ _id: req.params.id })
+    const data = await Reservation.deleteOne({ _id: req.params.id });
 
-        res.status(data.deletedCount ? 204 : 404).send({
-            error: !data.deletedCount,
-            data
-        })
-
-    },
-}
+    res.status(data.deletedCount ? 204 : 404).send({
+      error: !data.deletedCount,
+      data,
+    });
+  },
+};
