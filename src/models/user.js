@@ -54,7 +54,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         trim: true,
         required: [true, 'Email field must be required.'],
-        unique: [true, 'There is this email. Email field must be unique.'],
+        unique: [true, 'Email must be unique.'],
         validate: [
             (email) =>  {
                 const emailRegexCheck = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
