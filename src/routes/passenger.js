@@ -11,10 +11,12 @@ const passenger = require('../controllers/passenger')
 
 // URL: /passengers
 
+router.route('/')
+    .get(passenger.list)
+
 router.use(isStaffOrAdmin)
 
 router.route('/')
-    .get(passenger.list)
     .post(passenger.create)
 
 router.route('/:id')

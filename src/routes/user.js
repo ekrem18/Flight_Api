@@ -9,7 +9,7 @@ const user = require('../controllers/user')
 
 // URL: /users
 
-router.use(isAdmin)
+// router.use(isAdmin)
 
 router.route('/')
     .get(user.list)

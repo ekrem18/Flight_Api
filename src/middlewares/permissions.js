@@ -6,7 +6,7 @@
 
 module.exports = {
   isLogin: (req, res, next) => {
-    if(proccess.env.NODE_ENV == 'development') return next();
+    // if(proccess.env.NODE_ENV == 'development') return next();
 
     if (req.user) {
       next();
@@ -17,7 +17,7 @@ module.exports = {
   },
 
   isStaffOrAdmin: (req, res, next) => {
-    return next();
+    // return next();
     if (req.user && (req.user.isStaff || req.user.isAdmin)) {
       next();
     } else {
@@ -27,7 +27,7 @@ module.exports = {
   },
 
   isAdmin: (req, res, next) => {
-    return next();
+    // return next();
     if (req.user && req.user.isAdmin) {
       next();
     } else {
