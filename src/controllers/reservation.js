@@ -174,12 +174,13 @@ module.exports = {
       data,
     });
   },
+
+
   passengers: async (req, res) => {
     /*
         #swagger.tags = ["Reservations"]
         #swagger.summary = "List Passengers of Reservation"
     */
-
     const data = await Reservation.findOne({ _id: req.params.id })
 
     const passengers = await Passenger.find({ _id: { $in: data.passengers } })  //---> $in mongodb komutu bu, array içinde arama komuutu veriyoruz
@@ -188,6 +189,5 @@ module.exports = {
         error: false,
         passengers
     })
-
 },
 };
