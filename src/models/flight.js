@@ -1,33 +1,31 @@
 "use strict"
-/* -------------------------------------------------------
-    NODEJS EXPRESS | CLARUSWAY FullStack Team
-------------------------------------------------------- */
+/* -------------------------------------------------------*/
 const { mongoose } = require('../configs/dbConnection')
-/* ------------------------------------------------------- *
+/* -------------------------------------------------------*
 {
-    "flightNumber": "IS-AN-001",
-    "airline": "THY",
-    "departure": "ISTANBUL",
-    "departureDate": "2020-10-01 10:00:00",
-    "arrival": "ANKARA",
-    "arrivalDate": "2020-10-01 12:00:00",
+    "flightNumber": "CN-YZ-001",
+    "airline": "EKR",
+    "departure": "CANKIRI",
+    "departureDate": "2023-10-01 15:43:21",
+    "arrival": "YOZGAT",
+    "arrivalDate": "2023-10-01 17:43:21",
     "createdId": "652ceaa1bae9cde5e8a97522"
 }
 {
-  "flightNumber": "IS-AN-002",
+  "flightNumber": "YZ-CR-002",
   "airline": "THY",
-  "departure": "ISTANBUL",
-  "departureDate": "2020-10-01 23:00:00",
-  "arrival": "ANTALYA",
-  "arrivalDate": "2020-10-02 03:00:00",
+  "departure": "YOZGAT",
+  "departureDate": "2023-10-01 16:41:21",
+  "arrival": "CORUM",
+  "arrivalDate": "2023-10-01 18:41:21",
   "createdId": "65317b1c29b1267920ddf30d"
 }
-/* ------------------------------------------------------- */
+/* -------------------------------------------------------*/
 // Flight Model:
 
 const FlightSchema = new mongoose.Schema({
 
-    flightNumber: { // IS-AN-005
+    flightNumber: { // DL-RD-4818
         type: String,
         trim: true,
         required: true,
