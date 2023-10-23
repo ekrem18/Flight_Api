@@ -39,6 +39,15 @@ module.exports = {
                 in: 'body',
                 required: true,
                 schema: {
+                    "flightId": "...Flight.objectId...",
+                    "passengers": [
+                        "...Passenger.objectId...",
+                        {
+                            "firstName": "string",
+                            "lastName": "string",
+                            "email": "string:email",
+                        }
+                    ]
                 }
             }
         */
@@ -112,8 +121,7 @@ module.exports = {
             #swagger.parameters['body'] = {
                 in: 'body',
                 required: true,
-                schema: {
-                }
+                schema: {$ref:'#/definitions/Reservation'}
             }
         */
     /* Check ID or OBJECT for passengers */
