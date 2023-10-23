@@ -58,24 +58,24 @@ const UserSchema = new mongoose.Schema({
         validate: [
             (email) =>  {
                 const emailRegexCheck = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-                return emailRegexCheck.test(email)
+                return emailRegexCheck.test(email)                                   //---> .test diyerek true false çeviriyoruz
             },
             'Email type is not correct.'
         ]
     },
 
     isActive: {
-        type: Boolean,
+        type: Boolean,      //---> kullanıcı
         default: true
     },
 
     isStaff: {
-        type: Boolean,
+        type: Boolean,      //---> personel
         default: false
     },
 
     isAdmin: {
-        type: Boolean,
+        type: Boolean,      //---> müdür   diyebiliriz
         default: false
     },
 
