@@ -81,9 +81,9 @@ const FlightSchema = new mongoose.Schema({
 }, { collection: 'flights', timestamps: true })
 
 const dateToLocaleString = require('../helpers/dateToLocaleString')
-    // Mongoose Schema MW          ---> init: verilerle gerekli işlemler yapıldı ekrana basmadan hemen önceki data yı alığ arada işlem yapcam gibi düşünülebilir.
+    // Mongoose Schema MW               //---> init: verilerle gerekli işlemler yapıldı ekrana basmadan hemen önceki data yı alığ arada işlem yapcam gibi düşünülebilir.
 FlightSchema.pre('init', function(document){
-    // document.almis = "bebis"  //---> burada eklediğim bilgi erd tablosunda yer alan bir satırmışcasına ekleniyor. Model ve DB bundan etkilenmiyor 
+    // document.almis = "bebis"         //---> burada eklediğim bilgi erd tablosunda yer alan bir satırmışcasına ekleniyor. Model ve DB bundan etkilenmiyor 
     //document.departureDateStr = document.departureDate.toLocaleString('tr-tr', { dateStyle: 'full', timeStyle:'medium'})
     //document.arrivalDateStr = document.arrivalDate.toLocaleString('tr-tr', { dateStyle: 'full', timeStyle:'medium'})
     document.departureDateStr = dateToLocaleString(document.departureDate)
