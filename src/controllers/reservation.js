@@ -1,7 +1,5 @@
 "use strict";
-/* -------------------------------------------------------
-    NODEJS EXPRESS | CLARUSWAY FullStack Team
-------------------------------------------------------- */
+/* -------------------------------------------------------*/
 // Reservation Controller:
 const Passenger = require("../models/passenger");
 const Reservation = require("../models/reservation");

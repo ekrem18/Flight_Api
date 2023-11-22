@@ -2,6 +2,10 @@
 
 ### Author:
 Linkedin: [@ekremyilmazturk](https://www.linkedin.com/in/ekrem-yilmazturk/)
+<br>
+<br>
+<h3>About My Project</h3>
+<p> 📌As you can see from the ER diagram, this API service project is built upon four different models. 📌JWT is used for encryption.  📌A permission system is established for editing/changing something about personnels.  📌Logging is implemented. </p>
 
 ### Installation:
 ```sh
@@ -55,13 +59,7 @@ Linkedin: [@ekremyilmazturk](https://www.linkedin.com/in/ekrem-yilmazturk/)
 
 
 
-<h1>Personnel_Api</h1>
-<br>
-<h3>Author</h3>
 
-- Linkedin: [@ekremyilmazturk](https://www.linkedin.com/in/ekrem-yilmazturk/)
-<br>
-<br>
 <h3>About My Project</h3>
 <p> 📌As you can see from the ER diagram, this API service project is built upon two different models. 📌JWT is used for encryption.  📌A permission system is established for editing/changing something about personnels.  📌Logging is implemented. </p>
 <br>
