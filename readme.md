@@ -1,7 +1,7 @@
 # Flight_Api
 
 ### Author:
-- Linkedin: [@ekremyilmazturk](https://www.linkedin.com/in/ekrem-yilmazturk/)
+```- Linkedin: [@ekremyilmazturk](https://www.linkedin.com/in/ekrem-yilmazturk/)```
 
 ### Installation:
 ```sh
