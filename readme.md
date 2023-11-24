@@ -28,7 +28,7 @@ Finally, in the project directory, you can run:  `nodemon index.js`
   <li>Swagger & Redoc Docs</li>
 </ul>
 <br>
-
+<br>
 
 ### Folder/File Structure:
 
