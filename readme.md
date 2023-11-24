@@ -8,7 +8,6 @@ Linkedin: [@ekremyilmazturk](https://www.linkedin.com/in/ekrem-yilmazturk/)
 <h3>About My Project</h3>
 <p> 📌As you can see from the ER diagram, this API service project is built upon four different models. 📌JWT is used for encryption.  📌A permission system is established for editing/changing something about personnels. 📌If you are a customer/user, you can create a reservation. If you are an admin, you have the ability to create flights, users, reservations, and make changes related to them. 📌Logging is implemented. 📌If you want to read the API documentation and check the structure, Swagger and Redoc documents are also available. To access them, you can follow the '/redoc' or '/swagger' routes.  </p>
 <br>
-<br>
 
 <h3>How to install</h3>
 If you want to clone the project to your local and test it, you must install first 📌"npm i cookie-session",  
